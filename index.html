@@ -406,6 +406,12 @@
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </button>
       </div>
+      <div class="habit-row">
+        <span class="habit-label">Lectura</span>
+        <button class="check-btn" id="h5" onclick="toggleHabit('h5')">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -494,6 +500,7 @@
       <div class="habit-sum-row"><span class="habit-sum-lbl">Meditación</span><span class="habit-sum-val" id="wh2">—</span></div>
       <div class="habit-sum-row"><span class="habit-sum-lbl">Planeación</span><span class="habit-sum-val" id="wh3">—</span></div>
       <div class="habit-sum-row"><span class="habit-sum-lbl">Sueño</span><span class="habit-sum-val" id="wh4">—</span></div>
+      <div class="habit-sum-row"><span class="habit-sum-lbl">Lectura</span><span class="habit-sum-val" id="wh5">—</span></div>
     </div>
   </div>
 
@@ -598,7 +605,7 @@ if (!state.dias) state.dias = {};
 if (!state.semanas) state.semanas = {};
 if (!state.majo) state.majo = [];
 
-var habits = { h1: false, h2: false, h3: false, h4: false };
+var habits = { h1: false, h2: false, h3: false, h4: false, h5: false };
 
 var now = new Date();
 var dayNames = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
@@ -655,7 +662,7 @@ function todayKey() {
 function saveDay() {
   var key = todayKey();
   state.dias[key] = {
-    h: { h1: habits.h1, h2: habits.h2, h3: habits.h3, h4: habits.h4 },
+    h: { h1: habits.h1, h2: habits.h2, h3: habits.h3, h4: habits.h4, h5: habits.h5 },
     e: parseInt(document.getElementById('sl-e').value),
     f: parseInt(document.getElementById('sl-f').value),
     m: parseInt(document.getElementById('sl-m').value),
@@ -696,7 +703,7 @@ function renderWeek() {
   strip.innerHTML = '';
   var todayDow = now.getDay() === 0 ? 6 : now.getDay() - 1;
   var letters = ['L','M','X','J','V','S','D'];
-  var totals = { h1:0, h2:0, h3:0, h4:0, e:[], f:[], m:[] };
+  var totals = { h1:0, h2:0, h3:0, h4:0, h5:0, e:[], f:[], m:[] };
   var filled = 0;
 
   for (var i = 0; i < 7; i++) {
@@ -710,7 +717,7 @@ function renderWeek() {
     strip.appendChild(dot);
     if (data) {
       filled++;
-      if (data.h) { if(data.h.h1) totals.h1++; if(data.h.h2) totals.h2++; if(data.h.h3) totals.h3++; if(data.h.h4) totals.h4++; }
+      if (data.h) { if(data.h.h1) totals.h1++; if(data.h.h2) totals.h2++; if(data.h.h3) totals.h3++; if(data.h.h4) totals.h4++; if(data.h.h5) totals.h5++; }
       if (data.e) totals.e.push(data.e);
       if (data.f) totals.f.push(data.f);
       if (data.m) totals.m.push(data.m);
@@ -723,8 +730,8 @@ function renderWeek() {
   document.getElementById('avg-f').textContent = af !== null ? af : '—';
   document.getElementById('avg-m').textContent = am !== null ? am : '—';
 
-  var hids = ['h1','h2','h3','h4'];
-  var wids = ['wh1','wh2','wh3','wh4'];
+  var hids = ['h1','h2','h3','h4','h5'];
+  var wids = ['wh1','wh2','wh3','wh4','wh5'];
   for (var j = 0; j < 4; j++) {
     document.getElementById(wids[j]).textContent = filled > 0 ? totals[hids[j]] + '/' + filled + ' días' : '—';
   }
@@ -741,7 +748,7 @@ function renderHistory() {
   keys.forEach(function(key) {
     var d = state.dias[key];
     var score = d.e && d.f && d.m ? Math.round((d.e + d.f + d.m) / 3 * 10) / 10 : '—';
-    var hab = d.h ? [d.h.h1,d.h.h2,d.h.h3,d.h.h4].filter(Boolean).length : 0;
+    var hab = d.h ? [d.h.h1,d.h.h2,d.h.h3,d.h.h4,d.h.h5].filter(Boolean).length : 0;
     var card = document.createElement('div');
     card.className = 'entry-card';
     var preview = d.journal || d.p1 || d.c1 || '';
