@@ -752,7 +752,7 @@ function renderHistory() {
     var card = document.createElement('div');
     card.className = 'entry-card';
     var preview = d.journal || d.p1 || d.c1 || '';
-    card.innerHTML = '<div class="entry-header"><span class="entry-date">' + key + '</span><div class="entry-badges"><span class="badge">⚡' + score + '</span><span class="badge">🎯' + hab + '/4</span></div></div>' +
+    card.innerHTML = '<div class="entry-header"><span class="entry-date">' + key + '</span><div class="entry-badges"><span class="badge">⚡' + score + '</span><span class="badge">🎯' + hab + '/5</span></div></div>' +
       (preview ? '<div class="entry-preview">' + preview.slice(0,150) + '</div>' : '');
     lista.appendChild(card);
   });
