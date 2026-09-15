@@ -205,6 +205,14 @@
   .prog-bar { height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; margin-top: 8px; }
   .prog-fill { height: 100%; background: var(--cuerpo); border-radius: 2px; transition: width .4s ease; }
   .prog-fill-green { height: 100%; background: var(--success); border-radius: 2px; transition: width .4s ease; }
+
+  /* CUERPO SUBNAV */
+  .cuerpo-subnav { display:flex; gap:0; margin:-20px -20px 20px; border-bottom:0.5px solid var(--border); background:var(--bg); position:sticky; top:calc(var(--safe-top) + 73px); z-index:40; }
+  .csubnav-btn { flex:1; padding:12px 0; background:none; border:none; color:var(--text3); font-size:13px; font-weight:500; cursor:pointer; border-bottom:2px solid transparent; font-family:-apple-system,sans-serif; transition:all .15s; }
+  .csubnav-btn.active { color:var(--cuerpo); border-bottom-color:var(--cuerpo); }
+  .csub { display:none; }
+  .csub.active { display:block; }
+
 </style>
 </head>
 <body>
@@ -385,65 +393,117 @@
 <!-- VIEW: CUERPO -->
 <div class="view" id="view-cuerpo">
 
-  <div class="rehab-banner">
-    <span style="font-size:18px;flex-shrink:0">🦵</span>
-    <div class="rbtxt"><strong style="color:var(--warn)">Modo recuperación</strong> — Sin carga de pierna. Tendón cuádriceps izq. Actualiza cuando mejores.</div>
+  <!-- Sub-nav -->
+  <div class="cuerpo-subnav">
+    <button class="csubnav-btn active" id="csub-hoy" onclick="cuerpoTab('hoy')">Hoy</button>
+    <button class="csubnav-btn" id="csub-nutri" onclick="cuerpoTab('nutri')">Nutrición</button>
+    <button class="csubnav-btn" id="csub-semana" onclick="cuerpoTab('semana')">Semana</button>
   </div>
 
-  <!-- Stats -->
-  <div class="stats-grid-2" id="cuerpo-stats">
-    <div class="stat-card"><div class="stat-num" id="cs-entrenos">0<span style="font-size:14px;color:var(--text3)">/5</span></div><div class="stat-lbl">Esta semana</div></div>
-    <div class="stat-card"><div class="stat-num" id="cs-prot">0<span style="font-size:14px;color:var(--text3)">g</span></div><div class="stat-lbl">Proteína hoy</div></div>
-  </div>
-
-  <!-- Entrenamiento hoy -->
-  <div class="section">
-    <div class="section-label">ENTRENAMIENTO DE HOY</div>
-    <div class="card" id="c-entreno-card">
-      <div id="c-entreno-content"></div>
+  <!-- SUB: HOY -->
+  <div class="csub active" id="csub-view-hoy">
+    <div class="rehab-banner">
+      <span style="font-size:18px;flex-shrink:0">🦵</span>
+      <div class="rbtxt"><strong style="color:var(--warn)">Modo recuperación</strong> — Sin carga de pierna. Tendón cuádriceps izq. Actualiza cuando mejores.</div>
     </div>
-    <button class="btn-cuerpo" id="c-btn-entreno" onclick="cuerpoCompletarEntreno()">Marcar entrenamiento completado</button>
-  </div>
-
-  <!-- Nutrición -->
-  <div class="section">
-    <div class="section-label">NUTRICIÓN · ENERGÍA FÍSICA</div>
-    <div class="card">
-      <div class="habit-row" onclick="cuerpoToggle('comida1')" style="cursor:pointer">
-        <button class="check-btn" id="cc-comida1"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>
-        <div style="flex:1"><div class="habit-label">Comida 1 — Romper ayuno</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Aguacate + proteína · ~65g prot</div></div>
-      </div>
-      <div class="habit-row" onclick="cuerpoToggle('comida2')" style="cursor:pointer">
-        <button class="check-btn" id="cc-comida2"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>
-        <div style="flex:1"><div class="habit-label">Comida 2 — Cierre del día</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Proteína + leguminosa · ~65g prot</div></div>
-      </div>
-      <div class="prog-bar" style="margin-top:12px"><div class="prog-fill-green" id="c-prog-prot" style="width:0%"></div></div>
-      <div style="font-size:12px;color:var(--text3);margin-top:5px" id="c-prot-lbl">0 / 130g proteína</div>
+    <div class="stats-grid-2">
+      <div class="stat-card"><div class="stat-num" id="cs-entrenos">0<span style="font-size:14px;color:var(--text3)">/5</span></div><div class="stat-lbl">Esta semana</div></div>
+      <div class="stat-card"><div class="stat-num" id="cs-prot">0<span style="font-size:14px;color:var(--text3)">g</span></div><div class="stat-lbl">Proteína hoy</div></div>
     </div>
-  </div>
-
-  <!-- Agua -->
-  <div class="section">
-    <div class="section-label">HIDRATACIÓN</div>
-    <div class="card">
-      <div class="agua-row">
-        <div>
-          <div style="font-size:22px;font-weight:600" id="c-agua-num">0<span style="font-size:14px;color:var(--text3)"> / 6</span></div>
-          <div style="font-size:12px;color:var(--text3);margin-top:2px">vasos de 500ml → 3L</div>
+    <div class="section">
+      <div class="section-label">ENTRENAMIENTO DE HOY</div>
+      <div class="card" id="c-entreno-card"><div id="c-entreno-content"></div></div>
+      <button class="btn-cuerpo" id="c-btn-entreno" onclick="cuerpoCompletarEntreno()">Marcar entrenamiento completado</button>
+    </div>
+    <div class="section">
+      <div class="section-label">NUTRICIÓN · ENERGÍA FÍSICA</div>
+      <div class="card">
+        <div class="habit-row" onclick="cuerpoToggle('comida1')" style="cursor:pointer">
+          <button class="check-btn" id="cc-comida1"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <div style="flex:1"><div class="habit-label">Comida 1 — Romper ayuno</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Aguacate + proteína · ~65g prot</div></div>
         </div>
-        <div class="agua-btns">
-          <button class="agua-btn" onclick="cuerpoAjustarAgua(-1)">−</button>
-          <button class="agua-btn plus" onclick="cuerpoAjustarAgua(1)">+</button>
+        <div class="habit-row" onclick="cuerpoToggle('comida2')" style="cursor:pointer">
+          <button class="check-btn" id="cc-comida2"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>
+          <div style="flex:1"><div class="habit-label">Comida 2 — Cierre del día</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Proteína + leguminosa · ~65g prot</div></div>
         </div>
+        <div class="prog-bar" style="margin-top:12px"><div class="prog-fill-green" id="c-prog-prot" style="width:0%"></div></div>
+        <div style="font-size:12px;color:var(--text3);margin-top:5px" id="c-prot-lbl">0 / 130g proteína</div>
       </div>
-      <div class="prog-bar"><div class="prog-fill" id="c-prog-agua" style="width:0%"></div></div>
+    </div>
+    <div class="section">
+      <div class="section-label">HIDRATACIÓN</div>
+      <div class="card">
+        <div class="agua-row">
+          <div>
+            <div style="font-size:22px;font-weight:600" id="c-agua-num">0<span style="font-size:14px;color:var(--text3)"> / 6</span></div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px">vasos de 500ml → 3L</div>
+          </div>
+          <div class="agua-btns">
+            <button class="agua-btn" onclick="cuerpoAjustarAgua(-1)">−</button>
+            <button class="agua-btn plus" onclick="cuerpoAjustarAgua(1)">+</button>
+          </div>
+        </div>
+        <div class="prog-bar"><div class="prog-fill" id="c-prog-agua" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">RUTINA DE HOY — DETALLE</div>
+      <div id="c-rutina-ref"></div>
     </div>
   </div>
 
-  <!-- Rutina referencia -->
-  <div class="section">
-    <div class="section-label">REFERENCIA DE RUTINA</div>
-    <div id="c-rutina-ref"></div>
+  <!-- SUB: NUTRICIÓN -->
+  <div class="csub" id="csub-view-nutri">
+    <div class="section">
+      <div class="section-label">META DIARIA</div>
+      <div class="stats-grid-2">
+        <div class="stat-card"><div class="stat-num">130<span style="font-size:14px;color:var(--text3)">g</span></div><div class="stat-lbl">Proteína mínima</div></div>
+        <div class="stat-card"><div class="stat-num" style="font-size:18px">2,600<span style="font-size:12px;color:var(--text3)">kcal</span></div><div class="stat-lbl">Calorías objetivo</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">COMIDA 1 — ROMPER AYUNO</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:10px">Siempre empieza con aguacate. Elige una variante:</div>
+      <div id="cn-opciones-c1"></div>
+    </div>
+    <div class="section">
+      <div class="section-label">COMIDA 2 — CIERRE DEL DÍA</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:10px">4-5 horas después de la primera:</div>
+      <div id="cn-opciones-c2"></div>
+    </div>
+    <div class="section">
+      <div class="section-label">FUENTES DE PROTEÍNA</div>
+      <div class="card"><div id="cn-fuentes"></div></div>
+    </div>
+    <div class="section">
+      <div class="section-label">TIMING</div>
+      <div class="card">
+        <div style="font-size:13px;color:var(--text2);line-height:1.7">
+          <strong style="color:var(--text)">Opción A (en ayuno):</strong> Entrena en la mañana, rompe ayuno 1h después.<br><br>
+          <strong style="color:var(--text)">Opción B (recomendada):</strong> Entrena 30-60 min antes de tu primera comida. Comes inmediatamente al terminar.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB: SEMANA -->
+  <div class="csub" id="csub-view-semana">
+    <div class="section">
+      <div class="section-label">ESTA SEMANA</div>
+      <div class="stats-grid-2" style="margin-bottom:12px">
+        <div class="stat-card"><div class="stat-num" id="csem-entrenos">0<span style="font-size:14px;color:var(--text3)">/5</span></div><div class="stat-lbl">Entrenamientos</div></div>
+        <div class="stat-card"><div class="stat-num" id="csem-nutri">0<span style="font-size:14px;color:var(--text3)">/7</span></div><div class="stat-lbl">Días nutrición</div></div>
+      </div>
+      <div class="card"><div id="csem-dias"></div></div>
+    </div>
+    <div class="section">
+      <div class="section-label">FIN DE SEMANA — ACTIVIDADES</div>
+      <div class="card"><div id="csem-finde"></div></div>
+    </div>
+    <div class="section">
+      <div class="section-label">PROGRESIÓN — CUÁNDO SUBIR</div>
+      <div class="card"><div id="csem-progresion"></div></div>
+    </div>
   </div>
 
 </div>
@@ -705,6 +765,144 @@ function toggleCuerpoEx(id) {
   body.classList.toggle('open', !open);
   chev.classList.toggle('open', !open);
 }
+
+
+// ── CUERPO SUB-NAV ────────────────────────────────────────────────────────────
+function cuerpoTab(tab) {
+  document.querySelectorAll('.csub').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.csubnav-btn').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('csub-view-' + tab).classList.add('active');
+  document.getElementById('csub-' + tab).classList.add('active');
+  if (tab === 'nutri') renderCuerpoNutri();
+  if (tab === 'semana') renderCuerpoSemana();
+}
+
+// ── CUERPO NUTRICIÓN DATA ─────────────────────────────────────────────────────
+var COMIDAS_C1 = [
+  { id:'c1a', nombre:'Variante A', prot:'~45g', items:'Aguacate + 3-4 huevos revueltos + frijoles negros + tortillas' },
+  { id:'c1b', nombre:'Variante B', prot:'~50g', items:'Aguacate + atún (1 lata) + huevo duro + pan integral' },
+  { id:'c1c', nombre:'Variante C', prot:'~40g', items:'Aguacate + yogur griego grande + 2 huevos + fruta + nueces' },
+  { id:'c1d', nombre:'Variante D', prot:'~55g', items:'Aguacate + pollo desmenuzado 150g + huevos + arroz' },
+];
+var COMIDAS_C2 = [
+  { id:'c2a', nombre:'Variante A', prot:'~60g', items:'Salmón o atún + lentejas + verduras salteadas' },
+  { id:'c2b', nombre:'Variante B', prot:'~65g', items:'Pollo 150g + garbanzos + ensalada + yogur griego' },
+  { id:'c2c', nombre:'Variante C', prot:'~50g', items:'Tofu firme salteado + huevos + frijoles + arroz' },
+  { id:'c2d', nombre:'Variante D', prot:'~55g', items:'Queso cottage + atún + verduras + nueces' },
+];
+var FUENTES_PROT = [
+  { a:'Pechuga de pollo', p:'100g cocida', g:'31g' },
+  { a:'Huevo entero', p:'1 pieza', g:'6g' },
+  { a:'Atún en agua', p:'1 lata (130g)', g:'28g' },
+  { a:'Yogur griego', p:'170g', g:'17g' },
+  { a:'Leche de chícharo', p:'1 vaso (250ml)', g:'8g' },
+  { a:'Frijoles/lentejas', p:'1 taza cocida', g:'15-18g' },
+  { a:'Queso cottage', p:'100g', g:'11g' },
+  { a:'Tofu firme', p:'100g', g:'8g' },
+  { a:'Salmón', p:'100g cocido', g:'25g' },
+];
+var FINDE_ACTIVIDADES = [
+  { nombre:'Escalada', emoji:'🧗', estado:'✅ Ahora', color:'var(--success)', nota:'Tren superior puro. Evita empujar fuerte con pierna lesionada en apoyos.' },
+  { nombre:'Bicicleta plana', emoji:'🚴', estado:'✅ Ahora', color:'var(--success)', nota:'No carga el tendón como la sentadilla. Ideal para cardio sin riesgo.' },
+  { nombre:'Pádel / Tennis', emoji:'🎾', estado:'⚠️ 1-2 sem', color:'var(--warn)', nota:'Juego tranquilo está bien. Evita sprints, saltos y cambios bruscos.' },
+  { nombre:'Senderismo plano', emoji:'🥾', estado:'⚠️ Con cuidado', color:'var(--warn)', nota:'Terreno plano sin bajadas — ok. Bajadas pronunciadas — evitar.' },
+  { nombre:'Senderismo con bajadas', emoji:'⛰️', estado:'❌ Esperar', color:'#f87171', nota:'La bajada carga excéntricamente el cuádriceps. Espera recuperación.' },
+];
+var PROGRESION_REGLAS = [
+  { e:'Pseudo planche push-ups', c:'3×10 con buena forma 2 sesiones seguidas', s:'Mueve las manos 2cm más abajo' },
+  { e:'Remo con toalla / mesa', c:'4×15 limpio sin momentum', s:'Aumenta inclinación o agrega mochila' },
+  { e:'Dips entre sillas', c:'3×12 limpio', s:'Vuelve a las paralelas del parque al recuperarte' },
+  { e:'Isométrico cuádriceps', c:'3×45 seg sin molestia', s:'Pasa a straight leg raise con pausa larga' },
+  { e:'Toda la rutina', c:'Tendón sin molestia en escaleras y sentadilla parcial', s:'Volver a rutina PPL completa con barras y legs' },
+];
+
+var cnSelectedMeals = {};
+
+function renderCuerpoNutri() {
+  // Comidas C1
+  var c1div = document.getElementById('cn-opciones-c1');
+  c1div.innerHTML = COMIDAS_C1.map(function(o) {
+    var sel = cnSelectedMeals['c1'] === o.id;
+    return '<div class="cn-meal" id="cnmeal-'+o.id+'" onclick="cnSelectMeal('c1',''+o.id+'')" style="background:var(--bg2);border:1.5px solid '+(sel?'var(--cuerpo)':'var(--border)')+';border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:14px;font-weight:500">'+o.nombre+'</span><span style="font-size:13px;color:var(--cuerpo);font-weight:600">'+o.prot+' prot</span></div>' +
+      '<div style="font-size:12px;color:var(--text3);margin-top:5px;line-height:1.5">'+o.items+'</div></div>';
+  }).join('');
+  // Comidas C2
+  var c2div = document.getElementById('cn-opciones-c2');
+  c2div.innerHTML = COMIDAS_C2.map(function(o) {
+    var sel = cnSelectedMeals['c2'] === o.id;
+    return '<div class="cn-meal" id="cnmeal-'+o.id+'" onclick="cnSelectMeal('c2',''+o.id+'')" style="background:var(--bg2);border:1.5px solid '+(sel?'var(--cuerpo)':'var(--border)')+';border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:14px;font-weight:500">'+o.nombre+'</span><span style="font-size:13px;color:var(--cuerpo);font-weight:600">'+o.prot+' prot</span></div>' +
+      '<div style="font-size:12px;color:var(--text3);margin-top:5px;line-height:1.5">'+o.items+'</div></div>';
+  }).join('');
+  // Fuentes
+  document.getElementById('cn-fuentes').innerHTML = FUENTES_PROT.map(function(f) {
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:0.5px solid var(--border)">' +
+      '<div><div style="font-size:14px;color:var(--text)">'+f.a+'</div><div style="font-size:12px;color:var(--text3);margin-top:1px">'+f.p+'</div></div>' +
+      '<div style="font-size:14px;font-weight:600;color:var(--success)">'+f.g+'</div></div>';
+  }).join('').replace(/border-bottom[^"]+"><\/div>$/, '"></div>');
+}
+
+function cnSelectMeal(grupo, id) {
+  cnSelectedMeals[grupo] = cnSelectedMeals[grupo] === id ? null : id;
+  renderCuerpoNutri();
+}
+
+// ── CUERPO SEMANA ─────────────────────────────────────────────────────────────
+var DIAS_FULL_C = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
+function renderCuerpoSemana() {
+  var now2 = new Date();
+  var wk = cWeekKey(now2);
+  var wkData = cstate.semana[wk] || {};
+  var startOfWeek = new Date(now2);
+  startOfWeek.setDate(now2.getDate() - now2.getDay());
+
+  var dias = Object.values(wkData);
+  var entrenos = dias.filter(function(d){ return d.entreno; }).length;
+  var nutriOk = dias.filter(function(d){ return d.comida1 && d.comida2; }).length;
+  document.getElementById('csem-entrenos').innerHTML = entrenos + '<span style="font-size:14px;color:var(--text3)">/5</span>';
+  document.getElementById('csem-nutri').innerHTML = nutriOk + '<span style="font-size:14px;color:var(--text3)">/7</span>';
+
+  // Días
+  var diasHtml = '';
+  var todayKey2 = cTodayKey();
+  for (var i = 0; i < 7; i++) {
+    var d = new Date(startOfWeek); d.setDate(startOfWeek.getDate() + i);
+    var dk = d.toISOString().slice(0,10);
+    var data = wkData[dk] || {};
+    var plan = PLAN_SEMANA[i];
+    var isToday = dk === todayKey2;
+    diasHtml += '<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid var(--border)">' +
+      '<div style="width:7px;height:7px;border-radius:50%;background:'+(isToday?'var(--cuerpo)':'var(--border)')+';flex-shrink:0"></div>' +
+      '<div style="flex:1"><div style="font-size:14px;font-weight:'+(isToday?600:400)+'">'+DIAS_FULL_C[i]+(isToday?' · Hoy':'')+'</div>' +
+      '<div style="margin-top:2px"><span class="tipo-badge tipo-'+plan.tag+'" style="font-size:10px">'+plan.label+'</span></div></div>' +
+      '<div style="display:flex;gap:6px;font-size:17px">' +
+      (plan.tipo==='rest'?'<span>—</span>':(data.entreno?'<span>💪</span>':'<span style="color:var(--text3)">○</span>')) +
+      (data.comida1&&data.comida2?'<span>🥗</span>':'<span style="color:var(--text3)">○</span>') +
+      '</div></div>';
+  }
+  document.getElementById('csem-dias').innerHTML = diasHtml;
+
+  // Finde
+  var findeHtml = FINDE_ACTIVIDADES.map(function(a) {
+    return '<div style="margin-bottom:14px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">' +
+      '<div style="font-size:14px;font-weight:500">'+a.emoji+' '+a.nombre+'</div>' +
+      '<div style="font-size:12px;font-weight:700;color:'+a.color+'">'+a.estado+'</div></div>' +
+      '<div style="font-size:12px;color:var(--text3);line-height:1.5">'+a.nota+'</div></div>';
+  }).join('');
+  document.getElementById('csem-finde').innerHTML = findeHtml;
+
+  // Progresión
+  var progHtml = PROGRESION_REGLAS.map(function(r) {
+    return '<div style="margin-bottom:14px"><div style="font-size:14px;font-weight:500">'+r.e+'</div>' +
+      '<div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.5">' +
+      '<span style="color:var(--warn)">Cuándo: </span>'+r.c+'<br>' +
+      '<span style="color:var(--success)">Siguiente: </span>'+r.s+'</div></div>';
+  }).join('');
+  document.getElementById('csem-progresion').innerHTML = progHtml;
+}
+
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 function switchView(name) {
