@@ -1,10 +1,8 @@
-const CACHE = 'mentor-ini-v5';
+const CACHE = 'mentor-ini-v6';
 const ASSETS = ['./index.html', './manifest.json', './icon.svg'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS))
-  );
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
   self.skipWaiting();
 });
 
@@ -27,8 +25,6 @@ self.addEventListener('fetch', e => {
       }).catch(() => caches.match(e.request))
     );
   } else {
-    e.respondWith(
-      fetch(e.request).catch(() => caches.match(e.request))
-    );
+    e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
   }
 });
