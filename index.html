@@ -896,6 +896,7 @@ function loadCierreAcciones() {
   document.getElementById('cierre-p3-label').textContent = p3 || 'Sin acción definida';
 }
 
+function persist() {
   try { localStorage.setItem('ini_mentor_v2', JSON.stringify(state)); } catch(e) {}
 }
 
