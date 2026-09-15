@@ -207,7 +207,7 @@
   .prog-fill-green { height: 100%; background: var(--success); border-radius: 2px; transition: width .4s ease; }
 
   /* CUERPO SUBNAV */
-  .cuerpo-subnav { display:flex; gap:0; margin:-20px -20px 20px; border-bottom:0.5px solid var(--border); background:var(--bg1); }
+  .cuerpo-subnav { display:flex; gap:0; margin:-20px -20px 20px; border-bottom:0.5px solid var(--border); background:var(--bg); position:sticky; top:calc(var(--safe-top) + 73px); z-index:40; }
   .csubnav-btn { flex:1; padding:12px 0; background:none; border:none; color:var(--text3); font-size:13px; font-weight:500; cursor:pointer; border-bottom:2px solid transparent; font-family:-apple-system,sans-serif; transition:all .15s; }
   .csubnav-btn.active { color:var(--cuerpo); border-bottom-color:var(--cuerpo); }
   .csub { display:none; }
@@ -401,7 +401,7 @@
   </div>
 
   <!-- SUB: HOY -->
-  <div class="csub active" id="csub-view-hoy">
+  <div class="csub" id="csub-view-hoy" style="display:block">
     <div class="rehab-banner">
       <span style="font-size:18px;flex-shrink:0">🦵</span>
       <div class="rbtxt"><strong style="color:var(--warn)">Modo recuperación</strong> — Sin carga de pierna. Tendón cuádriceps izq. Actualiza cuando mejores.</div>
@@ -453,7 +453,7 @@
   </div>
 
   <!-- SUB: NUTRICIÓN -->
-  <div class="csub" id="csub-view-nutri">
+  <div class="csub" id="csub-view-nutri" style="display:none">
     <div class="section">
       <div class="section-label">META DIARIA</div>
       <div class="stats-grid-2">
@@ -487,7 +487,7 @@
   </div>
 
   <!-- SUB: SEMANA -->
-  <div class="csub" id="csub-view-semana">
+  <div class="csub" id="csub-view-semana" style="display:none">
     <div class="section">
       <div class="section-label">ESTA SEMANA</div>
       <div class="stats-grid-2" style="margin-bottom:12px">
@@ -769,23 +769,15 @@ function toggleCuerpoEx(id) {
 
 // ── CUERPO SUB-NAV ────────────────────────────────────────────────────────────
 function cuerpoTab(tab) {
-  // Hide all sub-views
-  var views = ['hoy','nutri','semana'];
-  views.forEach(function(t) {
-    var v = document.getElementById('csub-view-' + t);
-    var b = document.getElementById('csub-' + t);
-    if (v) v.classList.remove('active');
-    if (b) b.classList.remove('active');
+  ['hoy','nutri','semana'].forEach(function(t) {
+    document.getElementById('csub-view-' + t).style.display = 'none';
+    document.getElementById('csub-' + t).classList.remove('active');
   });
-  // Show selected
-  var selView = document.getElementById('csub-view-' + tab);
-  var selBtn  = document.getElementById('csub-' + tab);
-  if (selView) selView.classList.add('active');
-  if (selBtn)  selBtn.classList.add('active');
-  // Render data
-  if (tab === 'nutri')   renderCuerpoNutri();
-  if (tab === 'semana')  renderCuerpoSemana();
-  if (tab === 'hoy')     renderCuerpo();
+  document.getElementById('csub-view-' + tab).style.display = 'block';
+  document.getElementById('csub-' + tab).classList.add('active');
+  if (tab === 'nutri')  renderCuerpoNutri();
+  if (tab === 'semana') renderCuerpoSemana();
+  if (tab === 'hoy')    renderCuerpo();
 }
 
 // ── CUERPO NUTRICIÓN DATA ─────────────────────────────────────────────────────
@@ -927,7 +919,7 @@ function switchView(name) {
   if (name === 'historia') renderHistory();
   if (name === 'majo') renderMajo();
   if (name === 'checkin') loadCierreAcciones();
-  if (name === 'cuerpo') { cuerpoTab('hoy'); }
+  if (name === 'cuerpo') cuerpoTab('hoy');
 }
 
 // ── MENTOR FUNCTIONS ──────────────────────────────────────────────────────────
