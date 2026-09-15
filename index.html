@@ -478,7 +478,37 @@
 
   <div class="section">
     <div class="section-label">CIERRE NOCTURNO</div>
-    <div class="card">
+    <div class="card" id="acciones-cierre">
+      <div style="font-size:12px;color:var(--text3);margin-bottom:10px">¿Cumpliste las acciones que definiste esta mañana?</div>
+      <div class="habit-row" id="cierre-p1-row">
+        <div style="flex:1">
+          <div style="font-size:11px;margin-bottom:2px"><span class="pill pill-p1">P1</span></div>
+          <div class="habit-label" id="cierre-p1-label" style="font-size:13px;color:var(--text2)">—</div>
+        </div>
+        <button class="check-btn" id="cp1" onclick="toggleHabit('cp1')">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+      <div class="habit-row" id="cierre-p2-row">
+        <div style="flex:1">
+          <div style="font-size:11px;margin-bottom:2px"><span class="pill pill-p2">P2</span></div>
+          <div class="habit-label" id="cierre-p2-label" style="font-size:13px;color:var(--text2)">—</div>
+        </div>
+        <button class="check-btn" id="cp2" onclick="toggleHabit('cp2')">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+      <div class="habit-row" style="border-bottom:none;padding-bottom:0">
+        <div style="flex:1">
+          <div style="font-size:11px;margin-bottom:2px"><span class="pill pill-p3">P3</span></div>
+          <div class="habit-label" id="cierre-p3-label" style="font-size:13px;color:var(--text2)">—</div>
+        </div>
+        <button class="check-btn" id="cp3" onclick="toggleHabit('cp3')">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="card" style="margin-top:0">
       <div class="field-group">
         <div class="field-label">¿Qué evidencia tengo hoy de que estoy siendo el hombre que elijo ser?</div>
         <textarea id="cierre1" placeholder="Un logro, una actitud, una decisión..." rows="2"></textarea>
@@ -617,7 +647,7 @@ if (!state.dias) state.dias = {};
 if (!state.semanas) state.semanas = {};
 if (!state.majo) state.majo = [];
 
-var habits = { h1: false, h2: false, h3: false, h4: false, h5: false };
+var habits = { h1: false, h2: false, h3: false, h4: false, h5: false, cp1: false, cp2: false, cp3: false };
 
 var now = new Date();
 var dayNames = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
@@ -653,6 +683,7 @@ function switchView(name) {
   if (name === 'semana') renderWeek();
   if (name === 'historia') renderHistory();
   if (name === 'majo') renderMajo();
+  if (name === 'checkin') loadCierreAcciones();
 }
 
 function toggleHabit(id) {
@@ -675,6 +706,7 @@ function saveDay() {
   var key = todayKey();
   state.dias[key] = {
     h: { h1: habits.h1, h2: habits.h2, h3: habits.h3, h4: habits.h4, h5: habits.h5 },
+    cp: { cp1: habits.cp1, cp2: habits.cp2, cp3: habits.cp3 },
     e: parseInt(document.getElementById('sl-e').value),
     f: parseInt(document.getElementById('sl-f').value),
     m: parseInt(document.getElementById('sl-m').value),
@@ -841,7 +873,15 @@ function renderMajo() {
   });
 }
 
-function persist() {
+function loadCierreAcciones() {
+  var p1 = document.getElementById('a-p1').value;
+  var p2 = document.getElementById('a-p2').value;
+  var p3 = document.getElementById('a-p3').value;
+  document.getElementById('cierre-p1-label').textContent = p1 || 'Sin acción definida';
+  document.getElementById('cierre-p2-label').textContent = p2 || 'Sin acción definida';
+  document.getElementById('cierre-p3-label').textContent = p3 || 'Sin acción definida';
+}
+
   try { localStorage.setItem('ini_mentor_v2', JSON.stringify(state)); } catch(e) {}
 }
 
