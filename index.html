@@ -11,17 +11,17 @@
 <link rel="apple-touch-icon" href="icon.svg">
 <title>INI Mentor</title>
 <style>
-:root {
-  --bg:#0a0a0a; --bg1:#141414; --bg2:#1e1e1e; --bg3:#282828;
-  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.15);
-  --text:#f0f0f0; --text2:#999; --text3:#666;
-  --accent:#d4af6e; --accent-bg:rgba(212,175,110,0.1); --accent-border:rgba(212,175,110,0.3);
-  --p1:#5b8dee; --p1-bg:rgba(91,141,238,0.1);
-  --p2:#3ecf8e; --p2-bg:rgba(62,207,142,0.1);
-  --p3:#e06b9e; --p3-bg:rgba(224,107,158,0.1);
-  --warn:#f0a04b; --warn-bg:rgba(240,160,75,0.1);
+:root{
+  --bg:#0a0a0a;--bg1:#141414;--bg2:#1e1e1e;--bg3:#282828;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);
+  --text:#f0f0f0;--text2:#999;--text3:#666;
+  --accent:#d4af6e;--accent-bg:rgba(212,175,110,0.1);--accent-border:rgba(212,175,110,0.3);
+  --p1:#5b8dee;--p1-bg:rgba(91,141,238,0.1);
+  --p2:#3ecf8e;--p2-bg:rgba(62,207,142,0.1);
+  --p3:#e06b9e;--p3-bg:rgba(224,107,158,0.1);
+  --warn:#f0a04b;--warn-bg:rgba(240,160,75,0.1);
   --success:#3ecf8e;
-  --cuerpo:#a78bfa; --cuerpo-bg:rgba(167,139,250,0.1); --cuerpo-border:rgba(167,139,250,0.3);
+  --cuerpo:#a78bfa;--cuerpo-bg:rgba(167,139,250,0.1);--cuerpo-border:rgba(167,139,250,0.3);
   --radius:12px;
   --safe-top:env(safe-area-inset-top,0px);
   --safe-bottom:env(safe-area-inset-bottom,0px);
@@ -43,8 +43,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Te
 .section-label{font-size:11px;letter-spacing:0.08em;color:var(--text3);margin-bottom:10px;font-weight:500;}
 .card{background:var(--bg1);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;}
 .card.gold{border-color:var(--accent-border);background:var(--accent-bg);}
-.card.warn{border-color:rgba(240,160,75,0.3);background:var(--warn-bg);display:none;}
-.card.warn.show{display:block;}
+.card.warn-card{border-color:rgba(240,160,75,0.3);background:var(--warn-bg);display:none;}
+.card.warn-card.show{display:block;}
 .identity-text{font-size:14px;line-height:1.7;color:var(--text2);font-style:italic;}
 .identity-text em{color:var(--accent);font-style:normal;font-weight:500;}
 .pillar{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:0.5px solid var(--border);}
@@ -134,6 +134,8 @@ select:focus{outline:none;border-color:var(--accent-border);}
 .csubnav-btn.active{color:var(--cuerpo);border-bottom-color:var(--cuerpo);}
 .rehab-banner{background:rgba(240,160,75,0.08);border:0.5px solid rgba(240,160,75,0.25);border-radius:var(--radius);padding:12px 14px;margin-bottom:14px;display:flex;gap:10px;align-items:flex-start;}
 .rbtxt{font-size:13px;color:var(--warn);line-height:1.5;}
+.progr-banner{background:rgba(167,139,250,0.08);border:0.5px solid rgba(167,139,250,0.25);border-radius:var(--radius);padding:12px 14px;margin-bottom:14px;display:flex;gap:10px;align-items:flex-start;}
+.progr-banner .ptxt{font-size:13px;color:var(--cuerpo);line-height:1.5;}
 .btn-cuerpo{width:100%;padding:14px;background:var(--cuerpo);color:#000;border:none;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;margin-top:4px;transition:opacity .15s;}
 .btn-cuerpo:disabled{background:var(--bg3);color:var(--text3);}
 .agua-row{display:flex;align-items:center;justify-content:space-between;}
@@ -157,9 +159,19 @@ select:focus{outline:none;border-color:var(--accent-border);}
 .tb-push{background:rgba(167,139,250,0.15);color:var(--cuerpo);}
 .tb-pull{background:rgba(91,141,238,0.15);color:var(--p1);}
 .tb-rehab{background:rgba(240,160,75,0.15);color:var(--warn);}
+.tb-legs{background:rgba(62,207,142,0.15);color:var(--success);}
 .tb-rest{background:var(--bg3);color:var(--text3);}
 .meal-opt{background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;}
 .meal-opt.sel{border-color:var(--cuerpo);}
+/* HISTORIAL CUERPO */
+.chist-card{background:var(--bg1);border:0.5px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;cursor:pointer;}
+.chist-row{display:flex;align-items:center;justify-content:space-between;}
+.chist-date{font-size:13px;font-weight:500;color:var(--text);}
+.chist-badges{display:flex;gap:6px;align-items:center;}
+.chist-detail{display:none;margin-top:10px;border-top:0.5px solid var(--border);padding-top:10px;}
+.chist-detail.open{display:block;}
+/* FASE BADGE */
+.fase-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--cuerpo-bg);color:var(--cuerpo);display:inline-block;margin-bottom:12px;}
 </style>
 </head>
 <body>
@@ -174,9 +186,7 @@ select:focus{outline:none;border-color:var(--accent-border);}
 <div class="view active" id="view-ser">
   <div class="section">
     <div class="section-label">IDENTIDAD ELEGIDA</div>
-    <div class="card gold">
-      <div class="identity-text">Soy un hombre <em>incondicional</em>, primero hacia mí mismo. Un líder completo que guía desde el amor a sí mismo — y por eso puede guiar desde el amor a los demás. Un empresario y visionario que logra con <em>integridad</em> todo lo que se propone, genera riqueza para sí mismo y desde ahí da abundancia a los demás. Que se conoce, reconoce sus miedos, los integra y los evoluciona. El mejor CEO para INI y su fundación.</div>
-    </div>
+    <div class="card gold"><div class="identity-text">Soy un hombre <em>incondicional</em>, primero hacia mí mismo. Un líder completo que guía desde el amor a sí mismo — y por eso puede guiar desde el amor a los demás. Un empresario y visionario que logra con <em>integridad</em> todo lo que se propone, genera riqueza para sí mismo y desde ahí da abundancia a los demás. Que se conoce, reconoce sus miedos, los integra y los evoluciona. El mejor CEO para INI y su fundación.</div></div>
   </div>
   <div class="section">
     <div class="section-label">TUS 3 PALANCAS</div>
@@ -188,9 +198,7 @@ select:focus{outline:none;border-color:var(--accent-border);}
   </div>
   <div class="section">
     <div class="section-label">SEÑAL DE ALERTA TEMPRANA</div>
-    <div class="card" style="border-color:rgba(240,160,75,0.25);background:var(--warn-bg)">
-      <div class="alert-warn"><strong>Cuando notes:</strong> procrastinación · dejar cosas al último · sobrepensar.<br><br>No es falta de capacidad — es el patrón techo. Pausa e intercepta.</div>
-    </div>
+    <div class="card" style="border-color:rgba(240,160,75,0.25);background:var(--warn-bg)"><div class="alert-warn"><strong>Cuando notes:</strong> procrastinación · dejar cosas al último · sobrepensar.<br><br>No es falta de capacidad — es el patrón techo. Pausa e intercepta.</div></div>
   </div>
   <div class="section">
     <div class="section-label">REPROGRAMACIÓN ACTIVA</div>
@@ -204,7 +212,7 @@ select:focus{outline:none;border-color:var(--accent-border);}
 
 <!-- CHECK-IN -->
 <div class="view" id="view-checkin">
-  <div class="card warn" id="warn-card"><div class="alert-warn">⚠️ <strong>Energía o foco bajos.</strong> Es posible que hoy aparezca el patrón. Pausa, respira, pregúntate: ¿estoy reaccionando o eligiendo?</div></div>
+  <div class="card warn-card" id="warn-card"><div class="alert-warn">⚠️ <strong>Energía o foco bajos.</strong> Pausa, respira — ¿estoy reaccionando o eligiendo?</div></div>
   <div class="section">
     <div class="section-label">RITUAL MAÑANA</div>
     <div class="card">
@@ -323,14 +331,15 @@ select:focus{outline:none;border-color:var(--accent-border);}
 <!-- CUERPO -->
 <div class="view" id="view-cuerpo">
   <div class="csubnav">
-    <button class="csubnav-btn active" id="csbtn-hoy"    onclick="cuerpoTab('hoy')">Hoy</button>
-    <button class="csubnav-btn"        id="csbtn-nutri"  onclick="cuerpoTab('nutri')">Nutrición</button>
-    <button class="csubnav-btn"        id="csbtn-semana" onclick="cuerpoTab('semana')">Semana</button>
+    <button class="csubnav-btn active" id="csbtn-hoy"     onclick="cuerpoTab('hoy')">Hoy</button>
+    <button class="csubnav-btn"        id="csbtn-nutri"   onclick="cuerpoTab('nutri')">Nutrición</button>
+    <button class="csubnav-btn"        id="csbtn-historial" onclick="cuerpoTab('historial')">Historial</button>
+    <button class="csubnav-btn"        id="csbtn-semana"  onclick="cuerpoTab('semana')">Progresión</button>
   </div>
 
   <!-- HOY -->
   <div id="ctab-hoy">
-    <div class="rehab-banner"><span style="font-size:18px;flex-shrink:0">🦵</span><div class="rbtxt"><strong style="color:var(--warn)">Modo recuperación</strong> — Sin carga de pierna. Tendón cuádriceps izq.</div></div>
+    <div class="progr-banner"><span style="font-size:18px;flex-shrink:0">📈</span><div class="ptxt" id="fase-txt"><strong>Fase 1 — Semana 1-2:</strong> Reintroducir barras. Sentadilla parcial a 60° sin peso para evaluar tendón.</div></div>
     <div class="stats-grid-2">
       <div class="stat-card"><div class="stat-num" id="cs-entrenos">0<span style="font-size:14px;color:var(--text3)">/5</span></div><div class="stat-lbl">Esta semana</div></div>
       <div class="stat-card"><div class="stat-num" id="cs-prot">0<span style="font-size:14px;color:var(--text3)">g</span></div><div class="stat-lbl">Proteína hoy</div></div>
@@ -400,8 +409,34 @@ select:focus{outline:none;border-color:var(--accent-border);}
     </div>
   </div>
 
-  <!-- SEMANA -->
+  <!-- HISTORIAL -->
+  <div id="ctab-historial" style="display:none">
+    <div class="section">
+      <div class="section-label">ÚLTIMOS 30 DÍAS</div>
+      <div id="chist-lista"><div class="empty">Completa tu primer día para ver el historial.</div></div>
+    </div>
+  </div>
+
+  <!-- PROGRESIÓN -->
   <div id="ctab-semana" style="display:none">
+    <div class="section">
+      <div class="section-label">PLAN DEL MES — FASES</div>
+      <div class="card">
+        <div style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><span class="fase-badge">Semana 1-2</span></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Reintroducir barras</div><div style="font-size:13px;color:var(--text2);line-height:1.5">Volver al parque para Pull y Push en barras y paralelas. Legs: sentadilla parcial a 60° sin peso para evaluar respuesta del tendón.</div></div>
+        <div style="height:0.5px;background:var(--border);margin:12px 0"></div>
+        <div style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><span class="fase-badge">Semana 3</span></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">Carga real de pierna</div><div style="font-size:13px;color:var(--text2);line-height:1.5">Bulgarian split squat con rango reducido. Single leg RDL controlado. Isométricos de cuádriceps como calentamiento siempre.</div></div>
+        <div style="height:0.5px;background:var(--border);margin:12px 0"></div>
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><span class="fase-badge">Semana 4</span></div><div style="font-size:14px;font-weight:500;margin-bottom:3px">PPL completo</div><div style="font-size:13px;color:var(--text2);line-height:1.5">Rutina original completa si el tendón respondió bien. Jump squats cuando cuclillas profundas sean 100% sin molestia.</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">PROGRESIÓN DE EJERCICIOS</div>
+      <div class="card"><div id="csem-progresion"></div></div>
+    </div>
+    <div class="section">
+      <div class="section-label">FIN DE SEMANA</div>
+      <div class="card"><div id="csem-finde"></div></div>
+    </div>
     <div class="section">
       <div class="section-label">ESTA SEMANA</div>
       <div class="stats-grid-2" style="margin-bottom:12px">
@@ -409,14 +444,6 @@ select:focus{outline:none;border-color:var(--accent-border);}
         <div class="stat-card"><div class="stat-num" id="csem-nutri">0<span style="font-size:14px;color:var(--text3)">/7</span></div><div class="stat-lbl">Días nutrición</div></div>
       </div>
       <div class="card"><div id="csem-dias"></div></div>
-    </div>
-    <div class="section">
-      <div class="section-label">FIN DE SEMANA</div>
-      <div class="card"><div id="csem-finde"></div></div>
-    </div>
-    <div class="section">
-      <div class="section-label">PROGRESIÓN</div>
-      <div class="card"><div id="csem-progresion"></div></div>
     </div>
   </div>
 </div>
@@ -430,7 +457,6 @@ select:focus{outline:none;border-color:var(--accent-border);}
   <button class="nav-btn" id="nav-majo" onclick="switchView('majo')"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Majo</button>
   <button class="nav-btn cnav" id="nav-cuerpo" onclick="switchView('cuerpo')"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Cuerpo</button>
 </nav>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -445,38 +471,42 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.addEventListener('controllerchange',function(){ window.location.reload(); });
 }
 
+// ── KEY DE FECHA — fija al momento de abrir la app ───────────────────────────
+// Se fija cuando la app arranca, no cambia aunque pase la medianoche
+var SESSION_DATE = new Date();
+function getTodayKey(){
+  var d = SESSION_DATE;
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+}
+function pad(n){ return n<10?'0'+n:String(n); }
+function getWeekKey(date){
+  var d=new Date(date); d.setHours(0,0,0,0);
+  var day=d.getDay(), diff=d.getDate()-day+(day===0?-6:1);
+  var mon=new Date(d); mon.setDate(diff);
+  return mon.getFullYear()+'-'+pad(mon.getMonth()+1)+'-'+pad(mon.getDate());
+}
+
 // ── MENTOR STATE ──────────────────────────────────────────────────────────────
 var mstate={};
 try{ mstate=JSON.parse(localStorage.getItem('ini_mentor_v2')||'{}'); }catch(e){ mstate={}; }
 if(!mstate.dias) mstate.dias={};
 if(!mstate.semanas) mstate.semanas={};
 if(!mstate.majo) mstate.majo=[];
-
 function mPersist(){ try{ localStorage.setItem('ini_mentor_v2',JSON.stringify(mstate)); }catch(e){} }
 
 // ── CUERPO STATE ──────────────────────────────────────────────────────────────
 var cstate={};
 try{ cstate=JSON.parse(localStorage.getItem('ini_entreno_v2')||'{}'); }catch(e){ cstate={}; }
-if(!cstate.semana) cstate.semana={};
-
+if(!cstate.dias) cstate.dias={};  // historial por día: {fecha: {entreno, comida1, comida2, agua, tipo}}
 function cPersist(){ try{ localStorage.setItem('ini_entreno_v2',JSON.stringify(cstate)); }catch(e){} }
 
-function cTodayKey(){ return new Date().toISOString().slice(0,10); }
-function cWeekKey(date){
-  var d=new Date(date); d.setHours(0,0,0,0);
-  var day=d.getDay(), diff=d.getDate()-day+(day===0?-6:1);
-  return new Date(d.setDate(diff)).toISOString().slice(0,10);
-}
 function cGetToday(){
-  var key=cTodayKey(), wk=cWeekKey(new Date());
-  if(!cstate.semana[wk]) cstate.semana[wk]={};
-  if(!cstate.semana[wk][key]) cstate.semana[wk][key]={entreno:false,comida1:false,comida2:false,agua:0};
-  return cstate.semana[wk][key];
+  var key=getTodayKey();
+  if(!cstate.dias[key]) cstate.dias[key]={entreno:false,comida1:false,comida2:false,agua:0,tipo:''};
+  return cstate.dias[key];
 }
 function cSaveToday(data){
-  var key=cTodayKey(), wk=cWeekKey(new Date());
-  if(!cstate.semana[wk]) cstate.semana[wk]={};
-  cstate.semana[wk][key]=data;
+  cstate.dias[getTodayKey()]=data;
   cPersist();
 }
 
@@ -484,12 +514,11 @@ function cSaveToday(data){
 var habits={h1:false,h2:false,h3:false,h4:false,h5:false,cp1:false,cp2:false,cp3:false};
 function toggleHabit(id){ habits[id]=!habits[id]; document.getElementById(id).classList.toggle('done',habits[id]); }
 
-// ── NAV ───────────────────────────────────────────────────────────────────────
-var now=new Date();
+// ── TITULOS ───────────────────────────────────────────────────────────────────
+var now=SESSION_DATE;
 var DAY_NAMES=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
 var DAY_FULL=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 var MONTH_NAMES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-
 var TITLES={
   ser:['Ser',DAY_NAMES[now.getDay()]+', '+now.getDate()+' de '+MONTH_NAMES[now.getMonth()]],
   checkin:['Check-in diario','Mañana · Noche'],
@@ -499,6 +528,78 @@ var TITLES={
   cuerpo:['Cuerpo',DAY_NAMES[now.getDay()]+' · Entreno + Nutrición']
 };
 
+// ── DATOS ENTRENAMIENTO ───────────────────────────────────────────────────────
+var PLAN_SEMANA=[
+  {tipo:'rest', label:'Descanso',     tag:'rest'},
+  {tipo:'push', label:'Push',         tag:'push'},
+  {tipo:'pull', label:'Pull + Core',  tag:'pull'},
+  {tipo:'legs', label:'Legs + Core',  tag:'legs'},
+  {tipo:'push', label:'Push',         tag:'push'},
+  {tipo:'pull', label:'Pull + Core',  tag:'pull'},
+  {tipo:'legs', label:'Legs + Core',  tag:'legs'},
+];
+var EJERCICIOS={
+  push:[
+    {n:'Dips en paralelas',s:'4×8-12',f:'Baja hasta 90° en codos. Torso inclinado para pecho; más vertical = más tríceps.',e:'Bajar muy poco. Si no llegas a 90° no es un dip real.',p:'Agrega mochila con peso o fase negativa de 3 seg bajando.'},
+    {n:'Pseudo planche push-ups',s:'3×8-10',f:'Manos al nivel de la cadera, dedos hacia los pies. Cuerpo rígido, empuja el suelo hacia atrás.',e:'Doblar caderas.',p:'Mueve manos 2cm más abajo por semana.'},
+    {n:'Pike push-ups',s:'3×10-12',f:'Caderas arriba en V invertida. Cabeza baja entre los brazos al descender.',e:'No bajar suficiente o perder la V.',p:'Eleva pies en silla para más verticalidad.'},
+    {n:'Diamond push-ups',s:'3×10-15',f:'Manos en diamante bajo el esternón. Codos rozan los costados.',e:'Abrir codos o dejar caer la cadera.',p:'Agrega pausa de 2 seg en la parte baja.'},
+  ],
+  pull:[
+    {n:'Dominadas agarre ancho',s:'4×6-10',f:'Cuelga muerto. Jala pensando en llevar los codos al suelo. Mentón sobre la barra, baja 2-3 seg.',e:'Usar momentum. Una rep limpia vale por tres sucias.',p:'Cuando domines 4×10: agrega peso o pasa a archer pull-ups.'},
+    {n:'Dominadas agarre supino',s:'3×8-12',f:'Palmas hacia ti. Activa más bíceps. Mismo control en la bajada.',e:'Encorvar los hombros al inicio.',p:'Alterna con agarre neutro cuando estés listo.'},
+    {n:'Australian pull-ups',s:'3×10-15',f:'Barra a altura de cadera. Pecho toca la barra. Cuanto más horizontal más difícil.',e:'Solo acercarse sin tocar la barra.',p:'Eleva pies para quedar completamente horizontal.'},
+    {n:'Archer pull-ups / Negativas',s:'2×5-8',f:'Archer: jala hacia un lado extendiendo el otro brazo. Negativas: baja en 5-7 seg.',e:'Hacer las negativas demasiado rápido.',p:'Cuando domines archer: trabaja hacia muscle-up.'},
+  ],
+  legs:[
+    {n:'Bulgarian split squat',s:'4×10 c/pierna',f:'Pie trasero elevado. Baja lento, rodilla trasera cerca del suelo.',e:'Hacer el movimiento rápido.',p:'Agrega mochila con peso o aumenta el rango.'},
+    {n:'Single leg RDL',s:'3×10 c/pierna',f:'Pie de apoyo con rodilla ligeramente doblada. Inclina el torso mientras levantas la pierna libre.',e:'Rotar las caderas. Mantenlas cuadradas.',p:'Agrega peso en la mano opuesta.'},
+    {n:'Jump squats',s:'3×15',f:'Baja a sentadilla completa y explota hacia arriba. Aterriza suave absorbiendo con las rodillas.',e:'Aterrizar rígido.',p:'Aumenta altura o agrega pausa en la parte baja.'},
+    {n:'Hanging leg raises',s:'3×12-15',f:'Sin momentum. Sube piernas controlado, pausa arriba, baja lento.',e:'Usar swing.',p:'Piernas dobladas → rectas → tocar la barra con los pies.'},
+    {n:'Hollow body hold',s:'3×30 seg',f:'Espalda baja pegada al suelo. Brazos atrás, piernas elevadas ~15cm.',e:'Espalda arqueada — eleva más las piernas.',p:'Baja las piernas gradualmente semana a semana.'},
+  ],
+};
+var COMIDAS_C1=[
+  {id:'c1a',nombre:'Variante A',prot:'~45g',items:'Aguacate + 3-4 huevos revueltos + frijoles negros + tortillas'},
+  {id:'c1b',nombre:'Variante B',prot:'~50g',items:'Aguacate + atún (1 lata) + huevo duro + pan integral'},
+  {id:'c1c',nombre:'Variante C',prot:'~55g',items:'Aguacate + salmón 150g + huevos + tortillas'},
+  {id:'c1d',nombre:'Variante D',prot:'~55g',items:'Aguacate + pollo desmenuzado 150g + huevos + arroz'},
+];
+var COMIDAS_C2=[
+  {id:'c2a',nombre:'Variante A',prot:'~60g',items:'Salmón o atún + lentejas + verduras salteadas'},
+  {id:'c2b',nombre:'Variante B',prot:'~65g',items:'Pollo 150g + garbanzos + ensalada + yogur griego'},
+  {id:'c2c',nombre:'Variante C',prot:'~50g',items:'Tofu firme salteado + huevos + frijoles + arroz'},
+  {id:'c2d',nombre:'Variante D',prot:'~55g',items:'Queso cottage + atún + verduras + nueces'},
+];
+var FUENTES_PROT=[
+  {a:'Pechuga de pollo',p:'100g cocida',g:'31g'},
+  {a:'Huevo entero',p:'1 pieza',g:'6g'},
+  {a:'Atún en agua',p:'1 lata (130g)',g:'28g'},
+  {a:'Salmón',p:'100g cocido',g:'25g'},
+  {a:'Yogur griego',p:'170g',g:'17g'},
+  {a:'Leche de chícharo',p:'1 vaso (250ml)',g:'8g'},
+  {a:'Frijoles/lentejas',p:'1 taza cocida',g:'15-18g'},
+  {a:'Queso cottage',p:'100g',g:'11g'},
+  {a:'Tofu firme',p:'100g',g:'8g'},
+  {a:'Pepita de calabaza',p:'30g',g:'12g'},
+];
+var FINDE=[
+  {nombre:'Escalada',emoji:'🧗',estado:'✅ Siempre',color:'var(--success)',nota:'Tren superior puro. Ideal para complementar la rutina.'},
+  {nombre:'Bicicleta plana',emoji:'🚴',estado:'✅ Siempre',color:'var(--success)',nota:'Cardio sin impacto en el tendón. Perfecto para días activos.'},
+  {nombre:'Pádel / Tennis',emoji:'🎾',estado:'✅ Ya puedes',color:'var(--success)',nota:'Con tendón mejorando puedes jugar. Evita sprints muy explosivos todavía.'},
+  {nombre:'Senderismo plano',emoji:'🥾',estado:'✅ Ya puedes',color:'var(--success)',nota:'Plano sin problema. Modera el ritmo en bajadas.'},
+  {nombre:'Senderismo con bajadas',emoji:'⛰️',estado:'⚠️ Gradual',color:'var(--warn)',nota:'Introduce bajadas gradualmente. Si el tendón responde bien, adelante.'},
+];
+var PROGRESION=[
+  {e:'Dips en paralelas',c:'4×12 limpio 2 sesiones seguidas',s:'Agrega mochila con 2-3kg o fase negativa de 3 seg'},
+  {e:'Dominadas',c:'4×10 limpio 2 sesiones seguidas',s:'Agrega peso o pasa a archer pull-ups'},
+  {e:'Bulgarian split squat',c:'4×10 sin molestia en tendón',s:'Agrega mochila o aumenta rango de movimiento'},
+  {e:'Pseudo planche push-ups',c:'3×10 con buena forma',s:'Mueve las manos 2cm más abajo'},
+  {e:'Hanging leg raises',c:'3×15 con piernas dobladas',s:'Pasa a piernas rectas'},
+];
+var cnSel={};
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
 function switchView(name){
   document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
   document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
@@ -513,10 +614,8 @@ function switchView(name){
   if(name==='cuerpo') cuerpoTab('hoy');
 }
 
-// ── CUERPO SUB-TABS ───────────────────────────────────────────────────────────
-// Uses style.display directly — no class toggling, no CSS dependency
-var CTABS=['hoy','nutri','semana'];
-
+// ── CUERPO TABS ───────────────────────────────────────────────────────────────
+var CTABS=['hoy','nutri','historial','semana'];
 function cuerpoTab(tab){
   CTABS.forEach(function(t){
     document.getElementById('ctab-'+t).style.display='none';
@@ -524,91 +623,23 @@ function cuerpoTab(tab){
   });
   document.getElementById('ctab-'+tab).style.display='block';
   document.getElementById('csbtn-'+tab).classList.add('active');
-  if(tab==='hoy')    renderCuerpoHoy();
-  if(tab==='nutri')  renderCuerpoNutri();
-  if(tab==='semana') renderCuerpoSemana();
+  if(tab==='hoy')       renderCuerpoHoy();
+  if(tab==='nutri')     renderCuerpoNutri();
+  if(tab==='historial') renderCuerpoHistorial();
+  if(tab==='semana')    renderCuerpoProgresion();
 }
-
-// ── CUERPO DATA ───────────────────────────────────────────────────────────────
-var PLAN_SEMANA=[
-  {tipo:'rest', label:'Descanso',     tag:'rest'},
-  {tipo:'push', label:'Push',         tag:'push'},
-  {tipo:'pull', label:'Pull + Core',  tag:'pull'},
-  {tipo:'rehab',label:'Rehab + Core', tag:'rehab'},
-  {tipo:'push', label:'Push',         tag:'push'},
-  {tipo:'pull', label:'Pull + Core',  tag:'pull'},
-  {tipo:'rehab',label:'Rehab + Core', tag:'rehab'},
-];
-var EJERCICIOS={
-  push:[
-    {n:'Pseudo planche push-ups',s:'4×8-10',f:'Manos al nivel de la cadera, dedos hacia los pies. Cuerpo rígido, empuja el suelo hacia atrás.',e:'Doblar caderas. Retrocede a manos al ombligo si no puedes mantener recto.',p:'Mueve manos 2cm más abajo por semana.'},
-    {n:'Pike push-ups',s:'3×10-12',f:'Caderas arriba en V invertida. Cabeza baja entre los brazos al descender.',e:'No bajar suficiente o perder la V.',p:'Eleva pies en silla para más verticalidad.'},
-    {n:'Diamond push-ups',s:'3×10-15',f:'Manos en diamante bajo el esternón. Codos rozan los costados.',e:'Abrir codos o dejar caer la cadera.',p:'Agrega pausa de 2 seg en la parte baja.'},
-    {n:'Wide push-ups',s:'3×12-15',f:'Manos más anchas que los hombros. Codos hacia afuera al bajar.',e:'Codos colapsando hacia adentro.',p:'Agrega mochila ligera en la espalda.'},
-    {n:'Dips entre dos sillas',s:'3×10-12',f:'Dos sillas resistentes, torso ligeramente inclinado. Baja hasta 90° en codos.',e:'Sillas inestables — confirma antes.',p:'Al recuperar pierna vuelve a las paralelas.'},
-  ],
-  pull:[
-    {n:'Remo con toalla en puerta',s:'4×10-12',f:'Toalla en manija cerrada, inclínate y jala. Más inclinado = más difícil.',e:'Usar solo los brazos. Lleva los codos atrás apretando escápulas.',p:'Aumenta inclinación o agrega mochila.'},
-    {n:'Remo bajo en mesa',s:'3×10-15',f:'Bajo una mesa resistente, agarra el borde. Cuerpo rígido, pecho toca la mesa.',e:'Doblar caderas. Mantén cuerpo recto.',p:'Eleva pies para quedar más horizontal.'},
-    {n:'Curl de bíceps con mochila',s:'3×12-15',f:'Mochila con libros. Agarra asas, codo fijo. Curl completo, baja 2-3 seg.',e:'Usar momentum del torso.',p:'Agrega más peso gradualmente.'},
-    {n:'Face pulls con toalla',s:'3×12-15',f:'Toalla en manija alta. Jala hacia tu cara separando manos al final.',e:'Jalar hacia abajo en vez de hacia la cara.',p:'Aumenta inclinación del cuerpo.'},
-  ],
-  rehab:[
-    {n:'Isométrico de cuádriceps',s:'3×30-45 seg',f:'Acostado, pierna estirada. Aprieta el cuádriceps empujando la rodilla al suelo sin moverla.',e:'Levantar la pierna o doblar la rodilla.',p:'Aumenta hold: 30 → 45 → 60 seg.'},
-    {n:'Straight leg raise',s:'3×12-15',f:'Acostado, pierna sana doblada. Pierna lesionada recta, levanta a 45°, mantén 2 seg, baja lento.',e:'Arquear la espalda baja.',p:'Agrega pausa más larga arriba.'},
-    {n:'Terminal knee extension',s:'3×15',f:'De pie, rodilla casi recta. Contrae cuádriceps para el último 10-15° de extensión.',e:'Ir más allá del rango sin dolor.',p:'Agrega banda ligera cuando no haya molestia.'},
-    {n:'Clamshells',s:'3×15 c/lado',f:'Acostado de lado, rodillas a 45°. Abre la rodilla como almeja sin mover la pelvis.',e:'Rotar la pelvis hacia atrás.',p:'Agrega banda de resistencia en muslos.'},
-    {n:'Hollow body hold',s:'3×30 seg',f:'Espalda baja pegada al suelo. Brazos atrás, piernas elevadas ~15cm.',e:'Espalda arqueada — eleva más las piernas.',p:'Baja las piernas gradualmente.'},
-    {n:'Dead bug',s:'3×10 c/lado',f:'Acostado, brazos al techo, rodillas a 90°. Extiende brazo y pierna contrarios.',e:'Despegar la espalda del suelo.',p:'Pausa de 3 seg en posición extendida.'},
-    {n:'Side plank',s:'2×25 seg c/lado',f:'Antebrazo y borde del pie. Cadera arriba, cuerpo recto.',e:'Cadera colapsada — baja a rodillas.',p:'Aumenta a 35-45 seg.'},
-  ],
-};
-var COMIDAS_C1=[
-  {id:'c1a',nombre:'Variante A',prot:'~45g',items:'Aguacate + 3-4 huevos revueltos + frijoles negros + tortillas'},
-  {id:'c1b',nombre:'Variante B',prot:'~50g',items:'Aguacate + atún (1 lata) + huevo duro + pan integral'},
-  {id:'c1c',nombre:'Variante C',prot:'~40g',items:'Aguacate + yogur griego grande + 2 huevos + fruta + nueces'},
-  {id:'c1d',nombre:'Variante D',prot:'~55g',items:'Aguacate + pollo desmenuzado 150g + huevos + arroz'},
-];
-var COMIDAS_C2=[
-  {id:'c2a',nombre:'Variante A',prot:'~60g',items:'Salmón o atún + lentejas + verduras salteadas'},
-  {id:'c2b',nombre:'Variante B',prot:'~65g',items:'Pollo 150g + garbanzos + ensalada + yogur griego'},
-  {id:'c2c',nombre:'Variante C',prot:'~50g',items:'Tofu firme salteado + huevos + frijoles + arroz'},
-  {id:'c2d',nombre:'Variante D',prot:'~55g',items:'Queso cottage + atún + verduras + nueces'},
-];
-var FUENTES_PROT=[
-  {a:'Pechuga de pollo',p:'100g cocida',g:'31g'},
-  {a:'Huevo entero',p:'1 pieza',g:'6g'},
-  {a:'Atún en agua',p:'1 lata (130g)',g:'28g'},
-  {a:'Yogur griego',p:'170g',g:'17g'},
-  {a:'Leche de chícharo',p:'1 vaso (250ml)',g:'8g'},
-  {a:'Frijoles/lentejas',p:'1 taza cocida',g:'15-18g'},
-  {a:'Queso cottage',p:'100g',g:'11g'},
-  {a:'Tofu firme',p:'100g',g:'8g'},
-  {a:'Salmón',p:'100g cocido',g:'25g'},
-];
-var FINDE=[
-  {nombre:'Escalada',emoji:'🧗',estado:'✅ Ahora',color:'var(--success)',nota:'Tren superior puro. Evita empujar fuerte con pierna lesionada.'},
-  {nombre:'Bicicleta plana',emoji:'🚴',estado:'✅ Ahora',color:'var(--success)',nota:'No carga el tendón como la sentadilla. Ideal para cardio sin riesgo.'},
-  {nombre:'Pádel / Tennis',emoji:'🎾',estado:'⚠️ 1-2 sem',color:'var(--warn)',nota:'Juego tranquilo ok. Evita sprints, saltos y cambios bruscos.'},
-  {nombre:'Senderismo plano',emoji:'🥾',estado:'⚠️ Con cuidado',color:'var(--warn)',nota:'Plano sin bajadas ok. Bajadas pronunciadas — evitar.'},
-  {nombre:'Senderismo con bajadas',emoji:'⛰️',estado:'❌ Esperar',color:'#f87171',nota:'La bajada carga excéntricamente el cuádriceps. Espera recuperación.'},
-];
-var PROGRESION=[
-  {e:'Pseudo planche push-ups',c:'3×10 con buena forma 2 sesiones seguidas',s:'Mueve las manos 2cm más abajo'},
-  {e:'Remo con toalla / mesa',c:'4×15 limpio sin momentum',s:'Aumenta inclinación o agrega mochila'},
-  {e:'Dips entre sillas',c:'3×12 limpio',s:'Vuelve a las paralelas del parque al recuperarte'},
-  {e:'Isométrico cuádriceps',c:'3×45 seg sin molestia',s:'Pasa a straight leg raise con pausa larga'},
-  {e:'Toda la rutina',c:'Tendón sin molestia en escaleras y sentadilla parcial',s:'Volver a rutina PPL completa con barras y legs'},
-];
-var cnSel={};
 
 // ── CUERPO HOY ────────────────────────────────────────────────────────────────
 function renderCuerpoHoy(){
   var dow=now.getDay(), plan=PLAN_SEMANA[dow], today=cGetToday();
-  var wk=cWeekKey(now), wkDias=cstate.semana[wk]?Object.values(cstate.semana[wk]):[];
-  document.getElementById('cs-entrenos').innerHTML=wkDias.filter(function(d){return d.entreno;}).length+'<span style="font-size:14px;color:var(--text3)">/5</span>';
+  // Stats semana
+  var wk=getWeekKey(now);
+  var weekDias=Object.keys(cstate.dias).filter(function(k){ return getWeekKey(k)===wk; });
+  var entrenos=weekDias.filter(function(k){ return cstate.dias[k].entreno; }).length;
+  document.getElementById('cs-entrenos').innerHTML=entrenos+'<span style="font-size:14px;color:var(--text3)">/5</span>';
   var prot=(today.comida1?65:0)+(today.comida2?65:0);
   document.getElementById('cs-prot').innerHTML=prot+'<span style="font-size:14px;color:var(--text3)">g</span>';
+  // Entreno
   var content=document.getElementById('c-entreno-content');
   var btn=document.getElementById('c-btn-entreno');
   if(plan.tipo==='rest'){
@@ -619,13 +650,14 @@ function renderCuerpoHoy(){
     EJERCICIOS[plan.tipo].forEach(function(e){
       html+='<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--border)"><div style="width:5px;height:5px;border-radius:50%;background:var(--border2);flex-shrink:0"></div><div><div style="font-size:14px;font-weight:500">'+e.n+'</div><div style="font-size:12px;color:var(--text3);margin-top:1px">'+e.s+'</div></div></div>';
     });
-    html+='<div style="margin-top:8px;font-size:12px;color:var(--text3)">Toca "Nutrición" o baja para instrucciones</div>';
+    html+='<div style="margin-top:8px;font-size:12px;color:var(--text3)">Despliega abajo para instrucciones completas</div>';
     content.innerHTML=html;
     btn.style.display='block';
     if(today.entreno){ btn.textContent='✓ Completado'; btn.disabled=true; btn.style.background='var(--bg3)'; btn.style.color='var(--text3)'; }
     else { btn.textContent='Marcar entrenamiento completado'; btn.disabled=false; btn.style.background=''; btn.style.color=''; }
+    today.tipo=plan.label;
   }
-  // Checks
+  // Checks nutrición
   document.getElementById('cc-comida1').classList.toggle('done',today.comida1);
   document.getElementById('cc-comida2').classList.toggle('done',today.comida2);
   document.getElementById('c-prog-prot').style.width=((today.comida1?50:0)+(today.comida2?50:0))+'%';
@@ -633,7 +665,7 @@ function renderCuerpoHoy(){
   document.getElementById('c-agua-num').innerHTML=today.agua+'<span style="font-size:14px;color:var(--text3)"> / 6</span>';
   document.getElementById('c-prog-agua').style.width=Math.min(100,(today.agua/6)*100)+'%';
   // Rutina ref
-  var tipos=[{tipo:'push',label:'Push — Lun y Jue',tag:'push'},{tipo:'pull',label:'Pull + Core — Mar y Vie',tag:'pull'},{tipo:'rehab',label:'Rehab + Core — Mié y Sáb',tag:'rehab'}];
+  var tipos=[{tipo:'push',label:'Push — Lun y Jue',tag:'push'},{tipo:'pull',label:'Pull + Core — Mar y Vie',tag:'pull'},{tipo:'legs',label:'Legs + Core — Mié y Sáb',tag:'legs'}];
   var rhtml='';
   tipos.forEach(function(t){
     rhtml+='<div style="margin-bottom:4px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="tbadge tb-'+t.tag+'">'+t.tag.toUpperCase()+'</span><span style="font-size:14px;font-weight:500">'+t.label+'</span></div>';
@@ -645,9 +677,8 @@ function renderCuerpoHoy(){
   });
   document.getElementById('c-rutina-ref').innerHTML=rhtml;
 }
-
 function toggleEx(id){
-  var body=document.getElementById('body-'+id), chev=document.getElementById('chev-'+id);
+  var body=document.getElementById('body-'+id),chev=document.getElementById('chev-'+id);
   var open=body.classList.contains('open');
   body.classList.toggle('open',!open); chev.classList.toggle('open',!open);
 }
@@ -655,8 +686,14 @@ function cuerpoToggle(id){
   var today=cGetToday(); today[id]=!today[id]; cSaveToday(today);
   toast(today[id]?'✓ Registrado':'Desmarcado'); renderCuerpoHoy();
 }
-function cuerpoAjustarAgua(d){ var today=cGetToday(); today.agua=Math.max(0,Math.min(8,today.agua+d)); cSaveToday(today); renderCuerpoHoy(); }
-function cuerpoCompletarEntreno(){ var today=cGetToday(); today.entreno=true; cSaveToday(today); toast('💪 ¡Registrado!'); renderCuerpoHoy(); }
+function cuerpoAjustarAgua(d){
+  var today=cGetToday(); today.agua=Math.max(0,Math.min(8,today.agua+d)); cSaveToday(today); renderCuerpoHoy();
+}
+function cuerpoCompletarEntreno(){
+  var today=cGetToday(); today.entreno=true;
+  var dow=now.getDay(); today.tipo=PLAN_SEMANA[dow].label;
+  cSaveToday(today); toast('💪 ¡Registrado!'); renderCuerpoHoy();
+}
 
 // ── CUERPO NUTRICIÓN ──────────────────────────────────────────────────────────
 function renderCuerpoNutri(){
@@ -669,40 +706,77 @@ function renderCuerpoNutri(){
     return '<div class="meal-opt'+(sel?' sel':'')+'" onclick="cnSel.c2=\''+o.id+'\';renderCuerpoNutri()"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:14px;font-weight:500">'+o.nombre+'</span><span style="font-size:13px;color:var(--cuerpo);font-weight:600">'+o.prot+'</span></div><div style="font-size:12px;color:var(--text3);margin-top:5px;line-height:1.5">'+o.items+'</div></div>';
   }).join('');
   document.getElementById('cn-fuentes').innerHTML=FUENTES_PROT.map(function(f,i){
-    var last=i===FUENTES_PROT.length-1;
-    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:'+(last?'none':'0.5px solid var(--border)')+'"><div><div style="font-size:14px">'+f.a+'</div><div style="font-size:12px;color:var(--text3);margin-top:1px">'+f.p+'</div></div><div style="font-size:14px;font-weight:600;color:var(--success)">'+f.g+'</div></div>';
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:'+(i===FUENTES_PROT.length-1?'none':'0.5px solid var(--border)')+'"><div><div style="font-size:14px">'+f.a+'</div><div style="font-size:12px;color:var(--text3);margin-top:1px">'+f.p+'</div></div><div style="font-size:14px;font-weight:600;color:var(--success)">'+f.g+'</div></div>';
   }).join('');
 }
 
-// ── CUERPO SEMANA ─────────────────────────────────────────────────────────────
-function renderCuerpoSemana(){
-  var now2=new Date(), wk=cWeekKey(now2), wkData=cstate.semana[wk]||{};
-  var start=new Date(now2); start.setDate(now2.getDate()-now2.getDay());
-  var dias=Object.values(wkData);
-  document.getElementById('csem-entrenos').innerHTML=dias.filter(function(d){return d.entreno;}).length+'<span style="font-size:14px;color:var(--text3)">/5</span>';
-  document.getElementById('csem-nutri').innerHTML=dias.filter(function(d){return d.comida1&&d.comida2;}).length+'<span style="font-size:14px;color:var(--text3)">/7</span>';
-  var todayK=cTodayKey(), html='';
+// ── CUERPO HISTORIAL ──────────────────────────────────────────────────────────
+function renderCuerpoHistorial(){
+  var lista=document.getElementById('chist-lista');
+  var keys=Object.keys(cstate.dias).sort().reverse().slice(0,30);
+  if(!keys.length){ lista.innerHTML='<div class="empty">Completa tu primer día para ver el historial.</div>'; return; }
+  lista.innerHTML='';
+  keys.forEach(function(key){
+    var d=cstate.dias[key];
+    var entEmoji=d.entreno?'💪':'○';
+    var nutEmoji=(d.comida1&&d.comida2)?'🥗':(d.comida1||d.comida2)?'🥗½':'○';
+    var aguaPct=Math.round((d.agua/6)*100);
+    var card=document.createElement('div'); card.className='chist-card';
+    var detail='<div class="chist-detail" id="chd-'+key+'">';
+    detail+='<div style="display:flex;gap:16px;margin-bottom:10px">';
+    detail+='<div><div style="font-size:11px;color:var(--text3);margin-bottom:2px">ENTRENO</div><div style="font-size:14px;font-weight:500">'+(d.entreno?(d.tipo||'✓'):'No registrado')+'</div></div>';
+    detail+='<div><div style="font-size:11px;color:var(--text3);margin-bottom:2px">AGUA</div><div style="font-size:14px;font-weight:500">'+d.agua+'/6 vasos</div></div>';
+    detail+='</div>';
+    detail+='<div style="display:flex;gap:16px">';
+    detail+='<div><div style="font-size:11px;color:var(--text3);margin-bottom:2px">COMIDA 1</div><div style="font-size:14px">'+(d.comida1?'✅ Completada':'○ No registrada')+'</div></div>';
+    detail+='<div><div style="font-size:11px;color:var(--text3);margin-bottom:2px">COMIDA 2</div><div style="font-size:14px">'+(d.comida2?'✅ Completada':'○ No registrada')+'</div></div>';
+    detail+='</div>';
+    if(d.agua>0){
+      detail+='<div class="prog-bar" style="margin-top:10px"><div class="prog-fill" style="width:'+aguaPct+'%"></div></div>';
+      detail+='<div style="font-size:11px;color:var(--text3);margin-top:4px">'+aguaPct+'% hidratación</div>';
+    }
+    detail+='</div>';
+    card.innerHTML='<div class="chist-row"><span class="chist-date">'+key+'</span><div class="chist-badges"><span style="font-size:18px">'+entEmoji+'</span><span style="font-size:18px">'+nutEmoji+'</span><span style="font-size:11px;color:var(--text3)">'+d.agua+'/6💧</span></div></div>'+detail;
+    card.querySelector('.chist-row').addEventListener('click',function(){ document.getElementById('chd-'+key).classList.toggle('open'); });
+    lista.appendChild(card);
+  });
+}
+
+// ── CUERPO PROGRESIÓN ─────────────────────────────────────────────────────────
+function renderCuerpoProgresion(){
+  // Semana stats
+  var wk=getWeekKey(now);
+  var weekKeys=Object.keys(cstate.dias).filter(function(k){ return getWeekKey(k)===wk; });
+  var entrenos=weekKeys.filter(function(k){ return cstate.dias[k].entreno; }).length;
+  var nutriOk=weekKeys.filter(function(k){ return cstate.dias[k].comida1&&cstate.dias[k].comida2; }).length;
+  document.getElementById('csem-entrenos').innerHTML=entrenos+'<span style="font-size:14px;color:var(--text3)">/5</span>';
+  document.getElementById('csem-nutri').innerHTML=nutriOk+'<span style="font-size:14px;color:var(--text3)">/7</span>';
+  // Días
+  var startOfWeek=new Date(now); startOfWeek.setDate(now.getDate()-now.getDay());
+  var html='';
   for(var i=0;i<7;i++){
-    var d=new Date(start); d.setDate(start.getDate()+i);
-    var dk=d.toISOString().slice(0,10), data=wkData[dk]||{}, plan=PLAN_SEMANA[i], isToday=dk===todayK;
+    var d=new Date(startOfWeek); d.setDate(startOfWeek.getDate()+i);
+    var dk=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+    var data=cstate.dias[dk]||{}, plan=PLAN_SEMANA[i], isToday=dk===getTodayKey();
     html+='<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid var(--border)"><div style="width:7px;height:7px;border-radius:50%;background:'+(isToday?'var(--cuerpo)':'var(--border)')+';flex-shrink:0"></div><div style="flex:1"><div style="font-size:14px;font-weight:'+(isToday?600:400)+'">'+DAY_FULL[i]+(isToday?' · Hoy':'')+'</div><div style="margin-top:2px"><span class="tbadge tb-'+plan.tag+'">'+plan.label+'</span></div></div><div style="display:flex;gap:6px;font-size:17px">'+(plan.tipo==='rest'?'<span>—</span>':(data.entreno?'<span>💪</span>':'<span style="color:var(--text3)">○</span>'))+(data.comida1&&data.comida2?'<span>🥗</span>':'<span style="color:var(--text3)">○</span>')+'</div></div>';
   }
   document.getElementById('csem-dias').innerHTML=html;
-  document.getElementById('csem-finde').innerHTML=FINDE.map(function(a){
-    return '<div style="margin-bottom:14px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px"><div style="font-size:14px;font-weight:500">'+a.emoji+' '+a.nombre+'</div><div style="font-size:12px;font-weight:700;color:'+a.color+'">'+a.estado+'</div></div><div style="font-size:12px;color:var(--text3);line-height:1.5">'+a.nota+'</div></div>';
-  }).join('');
+  // Progresión
   document.getElementById('csem-progresion').innerHTML=PROGRESION.map(function(r){
     return '<div style="margin-bottom:14px"><div style="font-size:14px;font-weight:500">'+r.e+'</div><div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.5"><span style="color:var(--warn)">Cuándo: </span>'+r.c+'<br><span style="color:var(--success)">Siguiente: </span>'+r.s+'</div></div>';
   }).join('');
+  // Finde
+  document.getElementById('csem-finde').innerHTML=FINDE.map(function(a){
+    return '<div style="margin-bottom:14px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px"><div style="font-size:14px;font-weight:500">'+a.emoji+' '+a.nombre+'</div><div style="font-size:12px;font-weight:700;color:'+a.color+'">'+a.estado+'</div></div><div style="font-size:12px;color:var(--text3);line-height:1.5">'+a.nota+'</div></div>';
+  }).join('');
 }
 
-// ── MENTOR: CHECK-IN ──────────────────────────────────────────────────────────
+// ── MENTOR CHECK-IN ───────────────────────────────────────────────────────────
 var QUESTIONS=['¿Qué elegí hoy desde el amor a mí mismo y no desde el miedo?','¿Dónde fui el líder que quiero ser? ¿Dónde no?','¿Qué decisión pequeña tomé hoy que me acerca a quien elijo ser?','¿Actué hoy desde el deseo o desde el deber?','¿Cómo me relacioné hoy sin perderme a mí mismo?','¿Qué adversidad de hoy puedo transformar en aprendizaje?','¿Qué señal de autosabotaje noté hoy? ¿La intercepté o la dejé pasar?'];
 document.getElementById('pregunta-dia').textContent=QUESTIONS[now.getDay()];
-
 function updateSlider(key,val){
   document.getElementById('val-'+key).textContent=val;
-  var e=parseInt(document.getElementById('sl-e').value), f=parseInt(document.getElementById('sl-f').value);
+  var e=parseInt(document.getElementById('sl-e').value),f=parseInt(document.getElementById('sl-f').value);
   document.getElementById('warn-card').classList.toggle('show',e<=4||f<=4);
 }
 function loadCierreAcciones(){
@@ -710,17 +784,17 @@ function loadCierreAcciones(){
   document.getElementById('cierre-p2-label').textContent=document.getElementById('a-p2').value||'Sin acción definida';
   document.getElementById('cierre-p3-label').textContent=document.getElementById('a-p3').value||'Sin acción definida';
 }
-function todayKey(){ return now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate(); }
+function todayKey(){ return now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate()); }
 function saveDay(){
   mstate.dias[todayKey()]={h:{h1:habits.h1,h2:habits.h2,h3:habits.h3,h4:habits.h4,h5:habits.h5},cp:{cp1:habits.cp1,cp2:habits.cp2,cp3:habits.cp3},e:parseInt(document.getElementById('sl-e').value),f:parseInt(document.getElementById('sl-f').value),m:parseInt(document.getElementById('sl-m').value),p1:document.getElementById('a-p1').value,p2:document.getElementById('a-p2').value,p3:document.getElementById('a-p3').value,journal:document.getElementById('journal').value,c1:document.getElementById('cierre1').value,c2:document.getElementById('cierre2').value,ts:Date.now()};
   mPersist(); toast('Día guardado ✓');
 }
 
-// ── MENTOR: SEMANA ────────────────────────────────────────────────────────────
+// ── MENTOR SEMANA ─────────────────────────────────────────────────────────────
 function getWeekStart(){
-  var d=new Date(now), dow=d.getDay()===0?6:d.getDay()-1;
+  var d=new Date(now),dow=d.getDay()===0?6:d.getDay()-1;
   d.setDate(d.getDate()-dow);
-  return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 }
 function saveWeek(){
   mstate.semanas[getWeekStart()]={logros:document.getElementById('w-logros').value,deseo:document.getElementById('w-deseo').value,cambio:document.getElementById('w-cambio').value,ts:Date.now()};
@@ -729,10 +803,10 @@ function saveWeek(){
 function renderWeek(){
   var strip=document.getElementById('week-strip'); strip.innerHTML='';
   var todayDow=now.getDay()===0?6:now.getDay()-1;
-  var letters=['L','M','X','J','V','S','D'], totals={h1:0,h2:0,h3:0,h4:0,h5:0,e:[],f:[],m:[]}, filled=0;
+  var letters=['L','M','X','J','V','S','D'],totals={h1:0,h2:0,h3:0,h4:0,h5:0,e:[],f:[],m:[]},filled=0;
   for(var i=0;i<7;i++){
     var d=new Date(now); d.setDate(now.getDate()-todayDow+i);
-    var key=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(), data=mstate.dias[key];
+    var key=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),data=mstate.dias[key];
     var dot=document.createElement('div');
     dot.className='day-dot'+(data?' filled':'')+(i===todayDow?' today':'');
     dot.innerHTML='<span class="day-letter">'+letters[i]+'</span>'+(data?'<span>✓</span>':'');
@@ -740,21 +814,20 @@ function renderWeek(){
     if(data){ filled++; if(data.h){if(data.h.h1)totals.h1++;if(data.h.h2)totals.h2++;if(data.h.h3)totals.h3++;if(data.h.h4)totals.h4++;if(data.h.h5)totals.h5++;} if(data.e)totals.e.push(data.e);if(data.f)totals.f.push(data.f);if(data.m)totals.m.push(data.m); }
   }
   function avg(arr){ return arr.length?Math.round(arr.reduce(function(a,b){return a+b},0)/arr.length*10)/10:null; }
-  var ae=avg(totals.e),af=avg(totals.f),am=avg(totals.m);
-  document.getElementById('avg-e').textContent=ae!==null?ae:'—';
-  document.getElementById('avg-f').textContent=af!==null?af:'—';
-  document.getElementById('avg-m').textContent=am!==null?am:'—';
+  document.getElementById('avg-e').textContent=avg(totals.e)!==null?avg(totals.e):'—';
+  document.getElementById('avg-f').textContent=avg(totals.f)!==null?avg(totals.f):'—';
+  document.getElementById('avg-m').textContent=avg(totals.m)!==null?avg(totals.m):'—';
   var hids=['h1','h2','h3','h4','h5'],wids=['wh1','wh2','wh3','wh4','wh5'];
   for(var j=0;j<5;j++) document.getElementById(wids[j]).textContent=filled>0?totals[hids[j]]+'/'+filled+' días':'—';
 }
 
-// ── MENTOR: HISTORIA ──────────────────────────────────────────────────────────
+// ── MENTOR HISTORIA ───────────────────────────────────────────────────────────
 function renderHistory(){
   var lista=document.getElementById('historia-lista');
   var keys=Object.keys(mstate.dias).sort().reverse().slice(0,30);
   if(!keys.length){ lista.innerHTML='<div class="empty">Completa tu primer check-in para ver tu historia.</div>'; return; }
   lista.innerHTML='';
-  var hLabels=['Ejercicio','Meditación','Planeación','Sueño','Lectura'], hKeys=['h1','h2','h3','h4','h5'];
+  var hLabels=['Ejercicio','Meditación','Planeación','Sueño','Lectura'],hKeys=['h1','h2','h3','h4','h5'];
   keys.forEach(function(key){
     var d=mstate.dias[key];
     var score=d.e&&d.f&&d.m?Math.round((d.e+d.f+d.m)/3*10)/10:'—';
@@ -777,12 +850,12 @@ function renderHistory(){
   });
 }
 
-// ── MENTOR: MAJO ──────────────────────────────────────────────────────────────
+// ── MAJO ──────────────────────────────────────────────────────────────────────
 function addMajo(){
-  var titulo=document.getElementById('majo-titulo').value.trim(), insight=document.getElementById('majo-insight').value.trim(), tag=document.getElementById('majo-tag').value;
+  var titulo=document.getElementById('majo-titulo').value.trim(),insight=document.getElementById('majo-insight').value.trim(),tag=document.getElementById('majo-tag').value;
   if(!titulo){ toast('Escribe el título'); return; }
   if(!insight){ toast('Escribe el aprendizaje'); return; }
-  var d=new Date(), months=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var d=new Date(),months=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
   mstate.majo.push({tag:tag,title:titulo,insight:insight,date:d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear(),id:Date.now()});
   mPersist();
   document.getElementById('majo-titulo').value=''; document.getElementById('majo-insight').value='';
@@ -790,7 +863,7 @@ function addMajo(){
 }
 function deleteMajo(id){ mstate.majo=mstate.majo.filter(function(item){ return item.id!==id; }); mPersist(); renderMajo(); }
 function renderMajo(){
-  var feed=document.getElementById('majo-feed'), empty=document.getElementById('majo-empty');
+  var feed=document.getElementById('majo-feed'),empty=document.getElementById('majo-empty');
   if(!mstate.majo||!mstate.majo.length){ feed.innerHTML=''; empty.style.display='block'; return; }
   empty.style.display='none'; feed.innerHTML='';
   mstate.majo.slice().reverse().forEach(function(item){
